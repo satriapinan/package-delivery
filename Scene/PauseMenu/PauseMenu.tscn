@@ -1,0 +1,124 @@
+[gd_scene load_steps=10 format=3 uid="uid://b5vbcunlovrjj"]
+
+[ext_resource type="Script" path="res://Script/PauseMenu/PauseMenu.gd" id="1_eydri"]
+[ext_resource type="Texture2D" uid="uid://d3sqy5j3u0qqq" path="res://assets/Textures/DarkBGTexture.png" id="2_2e8cq"]
+[ext_resource type="Texture2D" uid="uid://bunkpug14vumy" path="res://assets/Textures/PauseMenu/PanelPauseTexture.png" id="3_i6wyt"]
+[ext_resource type="Texture2D" uid="uid://c2ye6dorkarf0" path="res://assets/Textures/PauseMenu/ButtonResumeTexture.png" id="4_xsal5"]
+[ext_resource type="Texture2D" uid="uid://dtsjueyhy0ftj" path="res://assets/Textures/PauseMenu/ButtonMainMenuTexture.png" id="5_1ox0x"]
+[ext_resource type="AudioStream" uid="uid://b26s1f58xkyxh" path="res://assets/Music/ButtonClick.mp3" id="6_5nnpc"]
+
+[sub_resource type="Animation" id="Animation_rn52b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nxihq"]
+resource_name = "dark"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oktbb"]
+_data = {
+"RESET": SubResource("Animation_rn52b"),
+"dark": SubResource("Animation_nxihq")
+}
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eydri")
+
+[node name="TextureRectDarkBG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_2e8cq")
+expand_mode = 1
+
+[node name="PanelPauseMenu" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRectPauseMenu" type="TextureRect" parent="PanelPauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -174.0
+offset_top = -153.0
+offset_right = 1565.0
+offset_bottom = 1381.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_i6wyt")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureButtonResume" type="TextureButton" parent="PanelPauseMenu"]
+layout_mode = 0
+offset_left = -80.0
+offset_top = -56.0
+offset_right = 1122.0
+offset_bottom = 605.0
+scale = Vector2(0.135, 0.135)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("4_xsal5")
+stretch_mode = 4
+
+[node name="TextureButtonMainMenu" type="TextureButton" parent="PanelPauseMenu"]
+layout_mode = 0
+offset_left = -93.0
+offset_top = 73.0
+offset_right = 827.0
+offset_bottom = 385.0
+scale = Vector2(0.193, 0.193)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_1ox0x")
+
+[node name="AnimationPlayerPause" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oktbb")
+}
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_5nnpc")
+volume_db = 3.0
+
+[connection signal="pressed" from="PanelPauseMenu/TextureButtonResume" to="." method="_on_texture_button_resume_pressed"]
+[connection signal="pressed" from="PanelPauseMenu/TextureButtonMainMenu" to="." method="_on_texture_button_main_menu_pressed"]

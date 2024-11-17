@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=3 uid="uid://m1tu6h55o1l"]
+
+[sub_resource type="GDScript" id="GDScript_xvwdh"]
+script/source = "extends Control
+
+var monologs = []
+var current_monolog_index = 0
+var subtitle_duration = 5.0
+var subtitle_interval = 60.0
+var time_since_last_subtitle = 0.0
+var start = false
+@onready var subtitle_label : Label = $SubtitleLabel
+
+func _ready():
+	var main_scene = get_tree().current_scene
+	if main_scene is Main:
+		monologs = Global.monologDay1
+	elif main_scene is Main2:
+		monologs = Global.monologDay2
+	elif main_scene is Main3:
+		monologs = Global.monologDay3
+	elif main_scene is Main4:
+		monologs = Global.monologDay4
+	elif main_scene is Main5:
+		monologs = Global.monologDay5
+		
+	current_monolog_index = 0
+	time_since_last_subtitle = 0.0
+
+func _process(delta):
+	if start:
+		time_since_last_subtitle += delta
+		if time_since_last_subtitle >= subtitle_interval:
+			time_since_last_subtitle -= subtitle_interval
+			_show_subtitle()
+
+func _show_subtitle():
+	if start and current_monolog_index < monologs.size():
+		subtitle_label.text = monologs[current_monolog_index]
+		_clear_subtitle_after_delay(subtitle_duration)
+		current_monolog_index += 1
+
+func _clear_subtitle_after_delay(duration: float):
+	var timer = Timer.new()
+	timer.wait_time = duration
+	timer.one_shot = true
+	timer.autostart = true
+	add_child(timer)
+	await timer.timeout
+	subtitle_label.text = \"\"
+"
+
+[node name="Monolog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_xvwdh")
+
+[node name="SubtitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 592.0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_colors/font_color = Color(0.901961, 0.745098, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Monolog"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

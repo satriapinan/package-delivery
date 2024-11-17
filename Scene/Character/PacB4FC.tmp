@@ -1,0 +1,56 @@
+[gd_scene load_steps=13 format=3 uid="uid://oqhsah6g2fnd"]
+
+[ext_resource type="Script" path="res://Script/Character/Package.gd" id="1_ketb4"]
+[ext_resource type="Texture2D" uid="uid://dwksyrkx5isoo" path="res://addons/kaykit_city_builder_bits/Assets/obj/citybits_texture.png" id="2_5ddkc"]
+[ext_resource type="ArrayMesh" uid="uid://doxdvp6wlois0" path="res://addons/kaykit_city_builder_bits/Assets/obj/box_A.obj" id="2_xmg5u"]
+[ext_resource type="AudioStream" uid="uid://b7je6jf7wwrs0" path="res://assets/Music/Package.mp3" id="4_v5yd7"]
+
+[sub_resource type="Gradient" id="Gradient_5l0tb"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.999811, 0.25553, 0.196887, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n7usr"]
+gradient = SubResource("Gradient_5l0tb")
+
+[sub_resource type="Gradient" id="Gradient_6ucl7"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.937255, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pvkjs"]
+gradient = SubResource("Gradient_6ucl7")
+
+[sub_resource type="Gradient" id="Gradient_i2br6"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dk3yd"]
+gradient = SubResource("Gradient_i2br6")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ubkwc"]
+resource_name = "citybits_texture"
+albedo_color = Color(0.941176, 0, 0, 1)
+albedo_texture = ExtResource("2_5ddkc")
+metallic = 1.0
+metallic_texture = SubResource("GradientTexture2D_dk3yd")
+detail_mask = SubResource("GradientTexture2D_n7usr")
+detail_normal = SubResource("GradientTexture2D_pvkjs")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pn2ih"]
+size = Vector3(0.201777, 0.180237, 0.200684)
+
+[node name="Package" type="Area3D"]
+priority = 1
+script = ExtResource("1_ketb4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_ubkwc")
+mesh = ExtResource("2_xmg5u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00037241, 0.0856628, 0.000732422)
+shape = SubResource("BoxShape3D_pn2ih")
+
+[node name="PickUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_v5yd7")
+volume_db = 10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

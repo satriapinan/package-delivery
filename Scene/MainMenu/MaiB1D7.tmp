@@ -1,0 +1,408 @@
+[gd_scene load_steps=33 format=3 uid="uid://dllcedh3c3u7h"]
+
+[ext_resource type="Script" path="res://Script/MainMenu/MainMenu.gd" id="1_opt3c"]
+[ext_resource type="Texture2D" uid="uid://cf05y0emci1ca" path="res://assets/Package Delivery.jpg" id="2_fo836"]
+[ext_resource type="Texture2D" uid="uid://d3sqy5j3u0qqq" path="res://assets/Textures/DarkBGTexture.png" id="3_map8b"]
+[ext_resource type="Texture2D" uid="uid://cjuk4bcrqp4w1" path="res://assets/Textures/PanelSelectDayTexture.png" id="4_11uvl"]
+[ext_resource type="Texture2D" uid="uid://bnxop4kp2jp2c" path="res://assets/Textures/ButtonSelectDay/ButtonDay1.png" id="5_p7ko7"]
+[ext_resource type="Texture2D" uid="uid://c0qkb2f58rvra" path="res://assets/Textures/ButtonSelectDay/ButtonDay1White.png" id="6_p8x60"]
+[ext_resource type="Texture2D" uid="uid://d87rrs8hym0f" path="res://assets/Textures/ButtonSelectDay/ButtonDay2.png" id="7_imebb"]
+[ext_resource type="Texture2D" uid="uid://bp1ddojuaopb" path="res://assets/Textures/ButtonSelectDay/ButtonDay2White.png" id="8_oy21f"]
+[ext_resource type="Texture2D" uid="uid://d1s0xvnikpua3" path="res://assets/Textures/ButtonSelectDay/ButtonDay3.png" id="9_lmld2"]
+[ext_resource type="Texture2D" uid="uid://de1hoehcd8t1o" path="res://assets/Textures/ButtonSelectDay/ButtonDay3White.png" id="10_d4l85"]
+[ext_resource type="Texture2D" uid="uid://catyg1v7aod83" path="res://assets/Textures/ButtonSelectDay/ButtonDay4.png" id="11_4717k"]
+[ext_resource type="Texture2D" uid="uid://dipr35dnrcryb" path="res://assets/Textures/ButtonSelectDay/ButtonDay4White.png" id="12_orq6r"]
+[ext_resource type="Texture2D" uid="uid://datdbgf1nd55k" path="res://assets/Textures/ButtonSelectDay/ButtonDay5.png" id="13_vlhgn"]
+[ext_resource type="Texture2D" uid="uid://b6fqvu6l1xl2n" path="res://assets/Textures/ButtonSelectDay/ButtonDay5White.png" id="14_4vhch"]
+[ext_resource type="Texture2D" uid="uid://b8jfhe4r63dla" path="res://assets/Textures/ButtonBack/ButtonBackTexture.png" id="15_35nko"]
+[ext_resource type="Texture2D" uid="uid://bs0xbx84ugg8b" path="res://assets/Textures/Star/Star0Texture.png" id="16_s14xy"]
+[ext_resource type="Texture2D" uid="uid://c1v7i8rpsi1b0" path="res://assets/Textures/DetailLevel/DetailLevelDay1.png" id="17_l56wh"]
+[ext_resource type="Texture2D" uid="uid://bl3u1cnb8syhs" path="res://assets/Textures/ButtonStartDay/ButtonStartDayTexture.png" id="18_lar4c"]
+[ext_resource type="Texture2D" uid="uid://c2jwy5c74wkwn" path="res://assets/Textures/ButtonStartDay/ButtonStartDayHover.png" id="19_lq2hd"]
+[ext_resource type="Texture2D" uid="uid://b3dao2618rht6" path="res://assets/Textures/ButtonPlay/ButtonPlayTexture.png" id="20_105ow"]
+[ext_resource type="Texture2D" uid="uid://bsnkf5lpo8rtt" path="res://assets/Textures/ButtonPlay/ButtonPlayTextureHover.png" id="21_rmdxy"]
+[ext_resource type="AudioStream" uid="uid://d2jso675suyfl" path="res://assets/Music/MainMenu.mp3" id="22_w0jki"]
+[ext_resource type="AudioStream" uid="uid://b26s1f58xkyxh" path="res://assets/Music/ButtonClick.mp3" id="23_htddb"]
+[ext_resource type="Script" path="res://Scene/MainMenu/Loading.gd" id="24_fbjsl"]
+
+[sub_resource type="Animation" id="Animation_7q3ng"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nisud"]
+resource_name = "dark"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lndoo"]
+_data = {
+"RESET": SubResource("Animation_7q3ng"),
+"dark": SubResource("Animation_nisud")
+}
+
+[sub_resource type="Animation" id="Animation_fo24q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rgb7e"]
+resource_name = "dark"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4rfss"]
+_data = {
+"RESET": SubResource("Animation_fo24q"),
+"dark": SubResource("Animation_rgb7e")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocnbm"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_doaaj"]
+font_size = 24
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_opt3c")
+
+[node name="PackageDelivery" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(1.125, 1.13684)
+texture = ExtResource("2_fo836")
+
+[node name="ControlSelectDay" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRectDarkBG" type="TextureRect" parent="ControlSelectDay"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("3_map8b")
+expand_mode = 1
+
+[node name="PanelSelectDay" type="Panel" parent="ControlSelectDay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRectBGSelectDay" type="TextureRect" parent="ControlSelectDay/PanelSelectDay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -492.0
+offset_top = -272.0
+offset_right = 492.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_11uvl")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="CenterContainerDayList" type="CenterContainer" parent="ControlSelectDay/PanelSelectDay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -376.0
+offset_top = -68.0
+offset_right = 2319.0
+offset_bottom = 612.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.275, 0.275)
+
+[node name="HBoxContainerDayList" type="HBoxContainer" parent="ControlSelectDay/PanelSelectDay/CenterContainerDayList"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureButtonDay1" type="TextureButton" parent="ControlSelectDay/PanelSelectDay/CenterContainerDayList/HBoxContainerDayList"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_p7ko7")
+texture_disabled = ExtResource("6_p8x60")
+stretch_mode = 4
+
+[node name="TextureButtonDay2" type="TextureButton" parent="ControlSelectDay/PanelSelectDay/CenterContainerDayList/HBoxContainerDayList"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_imebb")
+texture_disabled = ExtResource("8_oy21f")
+stretch_mode = 4
+
+[node name="TextureButtonDay3" type="TextureButton" parent="ControlSelectDay/PanelSelectDay/CenterContainerDayList/HBoxContainerDayList"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("9_lmld2")
+texture_disabled = ExtResource("10_d4l85")
+
+[node name="TextureButtonDay4" type="TextureButton" parent="ControlSelectDay/PanelSelectDay/CenterContainerDayList/HBoxContainerDayList"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4717k")
+texture_disabled = ExtResource("12_orq6r")
+
+[node name="TextureButtonDay5" type="TextureButton" parent="ControlSelectDay/PanelSelectDay/CenterContainerDayList/HBoxContainerDayList"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("13_vlhgn")
+texture_disabled = ExtResource("14_4vhch")
+
+[node name="TextureButtonSelectDayBack" type="TextureButton" parent="ControlSelectDay/PanelSelectDay"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = -236.0
+offset_right = 581.0
+offset_bottom = -39.0
+scale = Vector2(0.3, 0.3)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("15_35nko")
+
+[node name="TextureRectStarDay1" type="TextureRect" parent="ControlSelectDay"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 416.0
+offset_right = 679.0
+offset_bottom = 589.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("16_s14xy")
+
+[node name="TextureRectStarDay2" type="TextureRect" parent="ControlSelectDay"]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 416.0
+offset_right = 791.0
+offset_bottom = 589.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("16_s14xy")
+
+[node name="TextureRectStarDay3" type="TextureRect" parent="ControlSelectDay"]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 416.0
+offset_right = 919.0
+offset_bottom = 589.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("16_s14xy")
+
+[node name="TextureRectStarDay4" type="TextureRect" parent="ControlSelectDay"]
+layout_mode = 0
+offset_left = 648.0
+offset_top = 416.0
+offset_right = 1047.0
+offset_bottom = 589.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("16_s14xy")
+
+[node name="TextureRectStarDay5" type="TextureRect" parent="ControlSelectDay"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 416.0
+offset_right = 1167.0
+offset_bottom = 589.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("16_s14xy")
+
+[node name="AnimationPlayerSelectDay" type="AnimationPlayer" parent="ControlSelectDay"]
+libraries = {
+"": SubResource("AnimationLibrary_lndoo")
+}
+
+[node name="ControlStar" type="Control" parent="ControlSelectDay"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ControlDetailLevel" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRectDarkBG" type="TextureRect" parent="ControlDetailLevel"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("3_map8b")
+expand_mode = 1
+
+[node name="PanelDetailLevel" type="Panel" parent="ControlDetailLevel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -492.0
+offset_top = -272.0
+offset_right = -492.0
+offset_bottom = -272.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRectDetailLevel" type="TextureRect" parent="ControlDetailLevel/PanelDetailLevel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 78.0
+offset_top = 2.0
+offset_right = 906.0
+offset_bottom = 542.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_l56wh")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureButtonDetailLevelBack" type="TextureButton" parent="ControlDetailLevel/PanelDetailLevel"]
+layout_mode = 0
+offset_left = 826.0
+offset_top = 76.0
+offset_right = 1023.0
+offset_bottom = 273.0
+scale = Vector2(0.16, 0.16)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("15_35nko")
+
+[node name="TextureButtonDetailLevelStartDay" type="TextureButton" parent="ControlDetailLevel/PanelDetailLevel"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 460.0
+offset_right = 1027.0
+offset_bottom = 671.0
+scale = Vector2(0.23, 0.23)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("18_lar4c")
+texture_hover = ExtResource("19_lq2hd")
+
+[node name="AnimationPlayerDetailLevel" type="AnimationPlayer" parent="ControlDetailLevel"]
+libraries = {
+"": SubResource("AnimationLibrary_4rfss")
+}
+
+[node name="ButtonPlay" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 592.0
+offset_right = 632.0
+offset_bottom = 656.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("20_105ow")
+texture_hover = ExtResource("21_rmdxy")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_w0jki")
+volume_db = -10.0
+autoplay = true
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_htddb")
+
+[node name="Loading" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("24_fbjsl")
+
+[node name="Panel" type="Panel" parent="Loading"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ocnbm")
+
+[node name="Label" type="Label" parent="Loading/Panel"]
+layout_mode = 0
+offset_left = 1032.0
+offset_top = 600.0
+offset_right = 1124.0
+offset_bottom = 634.0
+text = "Loading"
+label_settings = SubResource("LabelSettings_doaaj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="ControlSelectDay/PanelSelectDay/CenterContainerDayList/HBoxContainerDayList/TextureButtonDay1" to="." method="_on_texture_button_day_1_pressed"]
+[connection signal="pressed" from="ControlSelectDay/PanelSelectDay/CenterContainerDayList/HBoxContainerDayList/TextureButtonDay2" to="." method="_on_texture_button_day_2_pressed"]
+[connection signal="pressed" from="ControlSelectDay/PanelSelectDay/CenterContainerDayList/HBoxContainerDayList/TextureButtonDay3" to="." method="_on_texture_button_day_3_pressed"]
+[connection signal="pressed" from="ControlSelectDay/PanelSelectDay/CenterContainerDayList/HBoxContainerDayList/TextureButtonDay4" to="." method="_on_texture_button_day_4_pressed"]
+[connection signal="pressed" from="ControlSelectDay/PanelSelectDay/CenterContainerDayList/HBoxContainerDayList/TextureButtonDay5" to="." method="_on_texture_button_day_5_pressed"]
+[connection signal="pressed" from="ControlSelectDay/PanelSelectDay/TextureButtonSelectDayBack" to="." method="_on_texture_button_select_day_back_pressed"]
+[connection signal="pressed" from="ControlDetailLevel/PanelDetailLevel/TextureButtonDetailLevelBack" to="." method="_on_texture_button_detail_level_back_pressed"]
+[connection signal="pressed" from="ControlDetailLevel/PanelDetailLevel/TextureButtonDetailLevelStartDay" to="." method="_on_texture_button_detail_level_start_day_pressed"]
+[connection signal="pressed" from="ButtonPlay" to="." method="_on_button_play_pressed"]
+[connection signal="tree_entered" from="ButtonPlay" to="." method="_on_texture_button_tree_entered"]

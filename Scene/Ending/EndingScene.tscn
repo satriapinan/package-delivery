@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy1o75vbhlips"]
+
+[ext_resource type="Script" path="res://Script/Ending/EndingScene.gd" id="1_pv2kn"]
+[ext_resource type="VideoStream" path="res://assets/Video/ending.ogv" id="1_twxd2"]
+
+[node name="EndingScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pv2kn")
+
+[node name="Ending" type="VideoStreamPlayer" parent="."]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 1088.0
+scale = Vector2(0.6, 0.6)
+stream = ExtResource("1_twxd2")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="finished" from="Ending" to="." method="_on_ending_finished"]

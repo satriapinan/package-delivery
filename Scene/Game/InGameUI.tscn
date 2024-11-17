@@ -1,0 +1,179 @@
+[gd_scene load_steps=9 format=3 uid="uid://1841fayk0sed"]
+
+[ext_resource type="Script" path="res://Script/Game/InGameUI.gd" id="1_w0ly0"]
+[ext_resource type="Texture2D" uid="uid://d3sqy5j3u0qqq" path="res://assets/Textures/DarkBGTexture.png" id="2_u8ad7"]
+[ext_resource type="Texture2D" uid="uid://dgq4hlgt3mu1w" path="res://assets/Petunjuk.png" id="3_53bem"]
+[ext_resource type="Texture2D" uid="uid://b8jfhe4r63dla" path="res://assets/Textures/ButtonBack/ButtonBackTexture.png" id="4_cx43p"]
+[ext_resource type="AudioStream" uid="uid://b26s1f58xkyxh" path="res://assets/Music/ButtonClick.mp3" id="5_ui2ks"]
+[ext_resource type="AudioStream" uid="uid://d4odpo3m4eq2" path="res://assets/Music/Second.mp3" id="6_5uvsp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odlcq"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_e8e44"]
+font_size = 14
+font_color = Color(1, 0.890196, 0, 1)
+
+[node name="InGameUI" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_w0ly0")
+
+[node name="Target" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1080.0
+offset_top = 64.0
+offset_right = 1144.0
+offset_bottom = 87.0
+text = "TARGET"
+
+[node name="PanelTimer" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1080.0
+offset_top = 24.0
+offset_right = 1144.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_odlcq")
+
+[node name="Timer" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1080.0
+offset_top = 24.0
+offset_right = 1144.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "TIMER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TargetTitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 991.0
+offset_top = 87.0
+offset_right = 1080.0
+offset_bottom = 110.0
+text = "Pekerjaan"
+uppercase = true
+
+[node name="TargetTitle2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 991.0
+offset_top = 110.0
+offset_right = 1056.0
+offset_bottom = 133.0
+text = "Pribadi"
+uppercase = true
+
+[node name="JobTarget" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1088.0
+offset_top = 87.0
+offset_right = 1142.0
+offset_bottom = 110.0
+text = "10/10"
+horizontal_alignment = 2
+
+[node name="SelfTarget" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1096.0
+offset_top = 110.0
+offset_right = 1142.0
+offset_bottom = 133.0
+text = "15/15"
+horizontal_alignment = 2
+
+[node name="Colon" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1080.0
+offset_top = 110.0
+offset_right = 1088.0
+offset_bottom = 133.0
+text = ":"
+horizontal_alignment = 2
+uppercase = true
+
+[node name="Colon2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1080.0
+offset_top = 87.0
+offset_right = 1088.0
+offset_bottom = 110.0
+text = ":"
+horizontal_alignment = 2
+uppercase = true
+
+[node name="TextureRectDarkBG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_u8ad7")
+expand_mode = 1
+
+[node name="PanelPetunjuk" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Petunjuk" type="TextureRect" parent="PanelPetunjuk"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -492.0
+offset_top = -272.0
+offset_right = 492.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_53bem")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureButtonPetunjukBack" type="TextureButton" parent="PanelPetunjuk"]
+layout_mode = 0
+offset_left = 363.0
+offset_top = -232.0
+offset_right = 560.0
+offset_bottom = -35.0
+scale = Vector2(0.3, 0.3)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("4_cx43p")
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ui2ks")
+volume_db = 3.0
+
+[node name="Second" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_5uvsp")
+volume_db = -10.0
+
+[node name="SubtitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 592.0
+offset_right = 1152.0
+offset_bottom = 648.0
+label_settings = SubResource("LabelSettings_e8e44")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="PanelPetunjuk/TextureButtonPetunjukBack" to="." method="_on_texture_button_petunjuk_back_pressed"]

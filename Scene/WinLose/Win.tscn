@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=3 uid="uid://dlcgq8hyv23rk"]
+
+[ext_resource type="Script" path="res://Script/WinLose/Win.gd" id="1_byyqs"]
+[ext_resource type="Texture2D" uid="uid://d3sqy5j3u0qqq" path="res://assets/Textures/DarkBGTexture.png" id="1_qd63m"]
+[ext_resource type="Texture2D" uid="uid://ckply2wdmpjdr" path="res://assets/Textures/WinLose/Win.png" id="2_n413w"]
+[ext_resource type="Texture2D" uid="uid://cr0bq7pku62ld" path="res://assets/Textures/WinLose/MenuUtama.png" id="3_kdm7o"]
+[ext_resource type="Script" path="res://Script/MainMenu/Loading.gd" id="5_74ksl"]
+[ext_resource type="AudioStream" uid="uid://0p36sq4l30ew" path="res://assets/Music/Winning.mp3" id="6_kvmwj"]
+[ext_resource type="AudioStream" uid="uid://b26s1f58xkyxh" path="res://assets/Music/ButtonClick.mp3" id="7_ea4yj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wj2a0"]
+font_size = 12
+
+[sub_resource type="Animation" id="Animation_rn52b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nxihq"]
+resource_name = "dark"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oktbb"]
+_data = {
+"RESET": SubResource("Animation_rn52b"),
+"dark": SubResource("Animation_nxihq")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvtnh"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_msbpj"]
+font_size = 24
+
+[node name="Win" type="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_byyqs")
+
+[node name="TextureRectDarkBG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_qd63m")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuUtama" type="TextureButton" parent="Panel"]
+layout_mode = 2
+offset_left = 448.0
+offset_top = 384.0
+offset_right = 704.0
+offset_bottom = 448.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_kdm7o")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Sempurna!" type="Sprite2D" parent="Panel"]
+position = Vector2(576, 280)
+scale = Vector2(0.513644, 0.5)
+texture = ExtResource("2_n413w")
+
+[node name="SubtitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 592.0
+offset_right = 1152.0
+offset_bottom = 648.0
+label_settings = SubResource("LabelSettings_wj2a0")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AnimationWinning" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oktbb")
+}
+
+[node name="Loading" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_74ksl")
+
+[node name="Panel" type="Panel" parent="Loading"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uvtnh")
+
+[node name="Label" type="Label" parent="Loading/Panel"]
+layout_mode = 0
+offset_left = 1032.0
+offset_top = 600.0
+offset_right = 1124.0
+offset_bottom = 634.0
+text = "Loading"
+label_settings = SubResource("LabelSettings_msbpj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_kvmwj")
+volume_db = -20.0
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ea4yj")
+volume_db = 3.0
+
+[connection signal="pressed" from="Panel/MenuUtama" to="." method="_on_menu_utama_pressed"]
