@@ -52,7 +52,6 @@ func _load_star_image(progress):
 
 func _load_star():
 	for i in range(Global.dayProgress.size()):
-		print(Global.dayProgress[i])
 		$ControlSelectDay.get_node("TextureRectStarDay" + str(i + 1)).texture = ResourceLoader.load(_load_star_image(Global.dayProgress[i]))
 
 func _load_day_progress():
