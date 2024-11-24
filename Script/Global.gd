@@ -48,8 +48,6 @@ func _ready():
 		dayProgress = loaded_data["dayProgress"]
 	else:
 		dayProgress = [0, 0, 0, 0, 0]
-	
-	print("Loaded dayProgress:", dayProgress)
 
 func _exit_tree():
 	Addonsave.save_data({"dayProgress": dayProgress})

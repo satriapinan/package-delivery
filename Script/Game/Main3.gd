@@ -28,8 +28,10 @@ func _ready():
 func _process(delta):
 	if self_counter == self_target:
 		$Win.visible = true
-	if ((self_counter < self_target) && (!in_game_ui.timer_running)) || (hit_ghost):
+		$UI.visible = false
+	elif ((self_counter < self_target) && (!in_game_ui.timer_running)) || (hit_ghost):
 		$Lose.visible = true
+		$UI.visible = false
 
 func increment_counter():
 	pickup_se.play()

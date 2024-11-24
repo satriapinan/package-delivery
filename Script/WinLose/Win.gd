@@ -16,45 +16,37 @@ func _ready():
 	
 	if bg_music.stream:
 		bg_music.stream.loop = true
-	
-	# Tampilkan monolog indeks ke-5 di scene kemenangan
+
 	_show_victory_monolog()
 
 func _process(delta):
 	if not winning:
 		if main_scene.self_counter == main_scene.self_target:
+			var scene_index = -1
 			if main_scene is Main:
-				Global.dayProgress[0] = 3
-				main_scene.ghost.start = false
+				scene_index = 0
 			elif main_scene is Main2:
-				Global.dayProgress[1] = 3
-				main_scene.ghost.start = false
-				main_scene.ghost2.start = false
+				scene_index = 1
 			elif main_scene is Main3:
-				Global.dayProgress[2] = 3
-				main_scene.ghost.start = false
-				main_scene.ghost2.start = false
-				main_scene.ghost3.start = false
+				scene_index = 2
 			elif main_scene is Main4:
-				Global.dayProgress[3] = 3
-				main_scene.ghost.start = false
-				main_scene.ghost2.start = false
-				main_scene.ghost3.start = false
-				main_scene.ghost4.start = false
+				scene_index = 3
 			elif main_scene is Main5:
-				Global.dayProgress[4] = 3
-				main_scene.ghost.start = false
-				main_scene.ghost2.start = false
-				main_scene.ghost3.start = false
-				main_scene.ghost4.start = false
-				main_scene.ghost5.start = false
-		
+				scene_index = 4
+
+			if scene_index >= 0:
+				Global.dayProgress[scene_index] = 3
+
+				for i in range(scene_index + 1):
+					var ghost_node_name = "Ghost" + (str(i + 1) if i > 0 else "")
+					if main_scene.has_node(ghost_node_name):
+						main_scene.get_node(ghost_node_name).start = false
+
 			$AnimationWinning.play("dark")
 			winning = true
-	
+
 	if winning and not musicPlay:
 		main_scene.bg_music.playing = false
-
 		bg_music.play()
 		musicPlay = true
 
@@ -62,12 +54,7 @@ func _process(delta):
 		tween.kill()
 	tween = create_tween()
 
-	var loading_visible = $Loading.visible == true
-	
-	if loading_visible:
-		tween.tween_property(bg_music, "volume_db", -80.0, 4.0)
-	else:
-		tween.tween_property(bg_music, "volume_db", -5.0, 1.0)
+	tween.tween_property(bg_music, "volume_db", -80.0 if $Loading.visible else -5.0, 1.0)
 
 func _show_victory_monolog():
 	var current_scene = get_tree().current_scene

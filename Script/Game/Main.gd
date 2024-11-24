@@ -27,7 +27,7 @@ func _process(delta):
 	if self_counter == self_target:
 		$Win.visible = true
 		$UI.visible = false
-	if ((self_counter < self_target) && (!in_game_ui.timer_running)) || (hit_ghost):
+	elif ((self_counter < self_target) && (!in_game_ui.timer_running)) || (hit_ghost):
 		$Lose.visible = true
 		$UI.visible = false
 

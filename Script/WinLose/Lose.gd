@@ -2,6 +2,7 @@ extends Control
 
 var main_scene: Node3D
 var losing = false
+var star: int = 0
 
 @onready var bg_music = $BGMusic
 @onready var tween:Tween
@@ -13,35 +14,41 @@ func _ready():
 	$Loading.visible = false
 
 func _process(delta):
-	if losing == false:
+	if not losing:
 		if ((main_scene.self_counter < main_scene.self_target) && (!main_scene.in_game_ui.timer_running)) || (main_scene.hit_ghost):
 			$AnimationLosing.play("dark")
 			main_scene.in_game_ui.start = false
-			if main_scene is Main:
-				main_scene.ghost.start = false
-			elif main_scene is Main2:
-				main_scene.ghost.start = false
-				main_scene.ghost2.start = false
-			elif main_scene is Main3:
-				main_scene.ghost.start = false
-				main_scene.ghost2.start = false
-				main_scene.ghost3.start = false
-			elif main_scene is Main4:
-				main_scene.ghost.start = false
-				main_scene.ghost2.start = false
-				main_scene.ghost3.start = false
-				main_scene.ghost4.start = false
-			elif main_scene is Main5:
-				main_scene.ghost.start = false
-				main_scene.ghost2.start = false
-				main_scene.ghost3.start = false
-				main_scene.ghost4.start = false
-				main_scene.ghost5.start = false
-			losing = true
-	
-	if losing && !musicPlay:
-		main_scene.bg_music.playing = false
 
+			var scene_index = -1
+			if main_scene is Main:
+				scene_index = 0
+			elif main_scene is Main2:
+				scene_index = 1
+			elif main_scene is Main3:
+				scene_index = 2
+			elif main_scene is Main4:
+				scene_index = 3
+			elif main_scene is Main5:
+				scene_index = 4
+				
+			if main_scene.job_counter == main_scene.job_target:
+				if main_scene.hit_ghost:
+					star = 1
+				else:
+					star = 2
+
+			if scene_index >= 0:
+				Global.dayProgress[scene_index] = max(Global.dayProgress[scene_index], star)
+
+				for i in range(scene_index + 1):
+					var ghost_node_name = "Ghost" + (str(i + 1) if i > 0 else "")
+					if main_scene.has_node(ghost_node_name):
+						main_scene.get_node(ghost_node_name).start = false
+
+			losing = true
+
+	if losing and not musicPlay:
+		main_scene.bg_music.playing = false
 		bg_music.play()
 		musicPlay = true
 
@@ -49,12 +56,9 @@ func _process(delta):
 		tween.kill()
 	tween = create_tween()
 
-	var loading_visible = $Loading.visible == true
-	
-	if loading_visible:
-		tween.tween_property(bg_music, "volume_db", -80.0, 4.0)
-	else:
-		tween.tween_property(bg_music, "volume_db", -5.0, 1.0)
+	var loading_visible = $Loading.visible
+	var volume_target = -5.0 if not loading_visible else -80.0
+	tween.tween_property(bg_music, "volume_db", volume_target, 1.0)
 
 func _on_menu_utama_pressed():
 	$ButtonClick.play()

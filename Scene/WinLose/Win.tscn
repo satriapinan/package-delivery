@@ -9,7 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://b26s1f58xkyxh" path="res://assets/Music/ButtonClick.mp3" id="7_ea4yj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wj2a0"]
-font_size = 12
+font_size = 14
+font_color = Color(1, 0.890196, 0, 1)
 
 [sub_resource type="Animation" id="Animation_rn52b"]
 length = 0.001

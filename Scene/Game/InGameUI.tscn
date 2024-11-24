@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Script/Game/InGameUI.gd" id="1_w0ly0"]
 [ext_resource type="Texture2D" uid="uid://d3sqy5j3u0qqq" path="res://assets/Textures/DarkBGTexture.png" id="2_u8ad7"]
-[ext_resource type="Texture2D" uid="uid://dgq4hlgt3mu1w" path="res://assets/Petunjuk.png" id="3_53bem"]
+[ext_resource type="Texture2D" uid="uid://xj3sphqetgox" path="res://assets/Petunjuk.png" id="3_53bem"]
 [ext_resource type="Texture2D" uid="uid://b8jfhe4r63dla" path="res://assets/Textures/ButtonBack/ButtonBackTexture.png" id="4_cx43p"]
 [ext_resource type="AudioStream" uid="uid://b26s1f58xkyxh" path="res://assets/Music/ButtonClick.mp3" id="5_ui2ks"]
 [ext_resource type="AudioStream" uid="uid://d4odpo3m4eq2" path="res://assets/Music/Second.mp3" id="6_5uvsp"]
