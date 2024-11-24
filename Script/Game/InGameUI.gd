@@ -15,7 +15,7 @@ var current_monolog_index = 0
 var subtitle_duration = 5.0
 var subtitle_interval = 60.0
 var time_since_last_subtitle = 0.0
-var paused_time: float = 0.0  # Track paused time
+var paused_time: float = 0.0
 
 @onready var subtitle_label : Label = $SubtitleLabel
 
