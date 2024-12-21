@@ -6,7 +6,7 @@ var SPEED = 3.0
 const RUN_MULTIPLIER = 1.5
 const JUMP_VELOCITY = 4.5
 const MOVEMENT_SMOOTHNESS = 0.1
-const MAX_TILT_ANGLE = 90.0
+#const MAX_TILT_ANGLE = 360.0
 const TILT_SENSITIVITY = 10.0
 
 var current_speed = SPEED 
@@ -68,10 +68,15 @@ func _physics_process(delta):
 	else:
 		anim_tree.set("parameters/conditions/grounded", true)
 		anim_tree.set("parameters/conditions/jumping", false)
-	
+
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
+	var camera_rotation = spring_arm.global_transform.basis.get_euler().y
+	var rotated_input_dir = Vector3(
+		input_dir.x * cos(camera_rotation) + input_dir.y * sin(camera_rotation),
+		0,
+		-input_dir.x * sin(camera_rotation) + input_dir.y * cos(camera_rotation)
+	).normalized()
+
 	if Input.is_action_pressed("run"):
 		current_speed = SPEED * RUN_MULTIPLIER
 		walk_sound.pitch_scale = 1.1
@@ -81,15 +86,15 @@ func _physics_process(delta):
 		walk_sound.pitch_scale = 1.0
 		is_running = false
 
-	velocity.x = lerp(velocity.x, float(direction.x * current_speed), MOVEMENT_SMOOTHNESS)
-	velocity.z = lerp(velocity.z, float(direction.z * current_speed), MOVEMENT_SMOOTHNESS)
+	velocity.x = lerp(velocity.x, float(rotated_input_dir.x * current_speed), MOVEMENT_SMOOTHNESS)
+	velocity.z = lerp(velocity.z, float(rotated_input_dir.z * current_speed), MOVEMENT_SMOOTHNESS)
 
-	if direction.length() > 0:
+	if rotated_input_dir.length() > 0:
 		if not is_moving:
 			is_moving = true
 			if not is_in_air:
 				fade_in_walk_sound()
-		var target_rotation = Vector2(direction.z, direction.x).angle()
+		var target_rotation = Vector2(rotated_input_dir.z, rotated_input_dir.x).angle()
 		model.rotation.y = lerp_angle(model.rotation.y, target_rotation, MOVEMENT_SMOOTHNESS)
 	else:
 		if is_moving:
@@ -110,12 +115,12 @@ func handle_camera_tilt(delta):
 		if not is_tilting:
 			is_tilting = true
 		
-		tilt_angle = clamp(tilt_angle - float(mouse_motion.x) * TILT_SENSITIVITY * delta, -MAX_TILT_ANGLE, MAX_TILT_ANGLE)
+		tilt_angle -= float(mouse_motion.x) * TILT_SENSITIVITY * delta
 		mouse_motion = Vector2.ZERO
 	else:
 		if is_tilting:
 			is_tilting = false
-		tilt_angle = lerp(tilt_angle, 0.0, MOVEMENT_SMOOTHNESS)
+		#tilt_angle = lerp(tilt_angle, 0.0, MOVEMENT_SMOOTHNESS)
 
 	spring_arm.rotation.y = deg_to_rad(tilt_angle)
 
